@@ -3,7 +3,7 @@ module.exports = {
   getClass: async function(className, classNumber, openOnly) {
     if (className == undefined || classNumber == undefined) return;
 
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch(/*{ headless: false }*/);
     const page = await browser.newPage();
     await page.goto(
       "https://css.unlv.nevada.edu/psc/lvcssprd/EMPLOYEE/SA/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL?Page=SSR_CLSRCH_ENTRY&Action=U&TargetFrameName=None",
@@ -24,7 +24,7 @@ module.exports = {
     await page.keyboard.type(classNumber);
 
     //is open
-    if (openOnly == "false") {
+    if (openOnly === false) {
       //i dont know bro, javascript bruh
       await page.evaluate(() => {
         document.querySelector("#SSR_CLSRCH_WRK_SSR_OPEN_ONLY\\$3").click();

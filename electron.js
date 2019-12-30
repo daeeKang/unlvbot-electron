@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const puppet = require('./puppet')
+const path = require('path')
 
 let win
 
@@ -12,15 +13,15 @@ function createWindow () {
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile(path.join(__dirname + '/renderer/index.html'))
   win.webContents.openDevTools()
   win.on('closed', () => {
     win = null
   })
 
-//   puppet.getClass('cs', '135', 'true').then(data => {
-//       console.log(data);
-//   })
+  puppet.getClass('cs', '135', 'true').then(data => {
+      console.log(data);
+  })
 }
 
 app.on('ready', createWindow)
