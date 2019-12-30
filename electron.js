@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const puppet = require('./puppet')
 const path = require('path')
+const ipc = require('electron').ipcMain
 
 let win
 
@@ -19,10 +20,16 @@ function createWindow () {
     win = null
   })
 
-  puppet.getClass('cs', '135', 'true').then(data => {
-      console.log(data);
-  })
+
 }
+
+//get classes with puppeteer
+ipc.on('get-class', function (event, arg) {
+  let classInfo = arg;
+  puppet.getClass(classInfo.className, classInfo.classNum, classInfo.isOpen).then(data => {
+    event.sender.send('got-class', data);
+  })
+})
 
 app.on('ready', createWindow)
 
