@@ -1,4 +1,70 @@
 body{
-    color: white;
-    background-color: aliceblue;
+    background-color: #4C566A;
+    text-align: center;
+}
+
+#button-container {
+    position: absolute;
+    top: 0;
+}
+
+#remove-class-button {
+    display: none;
+}
+
+#get-class-button {
+    display: none;
+}
+
+#get-class-button {
+    font-size: 20px;
+    border-radius: 2px;;
+    padding: 10px 20px;
+    background-color: #A3BE8C;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+#get-class-button:active {
+    box-shadow: 2px 2px 5px grey;
+}
+
+.class-input {
+    height: 50px;
+    width: 100px;
+    font-size: 30px;
+    text-align: center;
+    border:none;
+    border-radius: 4px;
+    margin: 5px;
+    background-color: #D8DEE9;
+    font-weight: bold;
+}
+
+.circle {
+    display: block;
+    background-color: #ECEFF4;
+    transition: background-color 0.5s ease;
+    width:40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 30px;
+    user-select: none;
+    margin: 10px;
+}
+
+.circle:hover {
+    background-color: #88C0D0;
+    color: #fff;
+}
+
+.circle:active {
+    box-shadow: 2px 2px 5px grey;
+}
+
+.red-circle:hover {
+    background-color: #BF616A;
+    color: #fff;
 }
