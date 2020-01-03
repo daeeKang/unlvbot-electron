@@ -81,6 +81,7 @@ ipc.on('got-class', (event, message) => {
     amInFlight = false;
 
     document.getElementById('get-classes-container').style.display = 'none';
+    ipc.send('enlarge-window');
     generateClassTable(results);
   }
 });

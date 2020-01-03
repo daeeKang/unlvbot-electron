@@ -2,24 +2,37 @@ function generateClassTable(results){
     let container = document.getElementById('view-classes-container');
 
     for(let i = 0; i < results.length; i++){
-        const but = document.createElement('button');
-        but.className = 'accordion';
-        but.textContent = results[i].className;
-        let innerhtml;
+        const span = document.createElement('span');
+
+        let innerhtml = `<button class='accordion'> ` + results[i].className + `</button>`
+        innerhtml += `<div class='panel'>`
         for(let k = 0; k < results[i].classes.length; k++){
-            innerhtml += `
-            <div class='panel'>
-                <p> ` + results[i].classes[k].dayTime + ` <p>
-            </div>
-            `
+             innerhtml += generateClassRow(results[i].classes[k], k % 2);
         }
-        but.innerHTML = innerhtml;
-        container.appendChild(but);
+        innerhtml += `</div>`
+        span.innerHTML = innerhtml;
+        container.appendChild(span);
     }
 
     addAccordianToTable();
 }
 
+function generateClassRow(thisClass, odd){
+    let out = '';
+    if(odd) 
+        out += `<div style='background-color: red'>`
+    else 
+        out = `<div>`
+    out +=
+    `
+        <div style='display: inline-block'> ${thisClass.dayTime} </div>
+        <div style='display: inline-block'> ${thisClass.room} </div>
+        <div style='display: inline-block'> ${thisClass.teacher} </div>
+        <div style='display: inline-block'> ${thisClass.status} </div>
+    </div>
+    `
+    return out;
+}
 
 function addAccordianToTable() {
     var acc = document.getElementsByClassName("accordion");

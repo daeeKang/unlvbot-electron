@@ -24,10 +24,16 @@ function createWindow () {
 }
 
 //get classes with puppeteer
-ipc.on('get-class', function (event, arg) {
+ipc.on('get-class', (event, arg) => {
   let classInfo = arg;
   puppet.getClass(classInfo.className, classInfo.classNum, classInfo.isOpen).then(data => {
     event.sender.send('got-class', data);
+  })
+})
+
+ipc.on('enlarge-window', (event, arg) => {
+  win.setBounds({
+    width: 1400
   })
 })
 
