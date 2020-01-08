@@ -2,10 +2,22 @@ class UnlvClass {
     constructor(name, classes) {
         this.name = name;
         this.classes = new Map();
-        this.initClasses();
+        this.initClasses(classes);
     }
 
-    initClasses() {
+    initClasses(cl) {
+        cl.forEach(c => {
+            let singleClass = new SingleClass(
+                c.dayTime,
+                c.room,
+                c.sectionNumber,
+                c.status,
+                c.teacher
+            );
+
+            console.log(singleClass.days);
+        });
+
         this.classes.set("M", []);
         this.classes.set("T", []);
         this.classes.set("W", []);
@@ -23,14 +35,14 @@ class UnlvClass {
     }
 }
 
-class singleClass {
+class SingleClass {
     constructor(dayTime, room, sectionNumber, status, teacher) {
         this.teacher = teacher;
         this.status = status;
         this.sectionNumber = sectionNumber;
         this.room = room;
         this.days = this.setDays(dayTime);
-        this.startTime = this.setTime(dayTime);
+        this.startTime = this.setStartTime(dayTime);
     }
 
     setDays(dayTime) {
@@ -49,7 +61,7 @@ class singleClass {
                     out += 'F';
                     break;
                 case 'T':
-                    if(dayTime[++i] == 'u')
+                    if(dayTime[i + 1] == 'u')
                         out += 'T';
                     else
                         out += 'TH'; 
@@ -63,6 +75,7 @@ class singleClass {
         return out;
     }
 
+    //TODO: DO THIS TIME TINGZ
     setStartTime(dayTime) {
         let out = '';
         for(let i = 0; i < dayTime.length; i++){
@@ -75,6 +88,5 @@ class singleClass {
 
     convertToMilitary(time){
         if(time[5] == 'A') return time;
-        else
     }
 }
